@@ -56,8 +56,8 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-    return "select * from yahoo.finance.quotes where symbol in ('"+ ticker+"')"
-
+    return "select * from yahoo.finance.quotes where symbol in ('" + ticker + "')"
+speech = "niroop is still great"
 def makeWebhookResult(data):
     query = data.get('query')
     if query is None:
