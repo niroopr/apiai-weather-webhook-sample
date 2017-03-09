@@ -36,13 +36,13 @@ def webhook():
 
 
 def processRequest(req):
-    if req.get("result").get("action") != "yahooWeatherForecast":
+    if req.get("result").get("action") != "finance.stocks":
         return {}
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json"
+    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
     result = urlopen(yql_url).read()
     data = json.loads(result)
     res = makeWebhookResult(data)
@@ -56,7 +56,7 @@ def makeYqlQuery(req):
     if city is None:
         return None
 
-    return "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='" + city + "')"
+    return "select * from yahoo.finance.quotes where symbol in ("YHOO")"
 
 
 def makeWebhookResult(data):
@@ -86,7 +86,7 @@ def makeWebhookResult(data):
 
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
             # ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
-    speech = "niroop is a great guy"
+    speech = data
     print("Response:")
     print(speech)
 
