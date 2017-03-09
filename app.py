@@ -52,12 +52,11 @@ def processRequest(req):
 def makeYqlQuery(req):
     result = req.get("result")
     parameters = result.get("parameters")
-    city = parameters.get("geo-city")
+    ticker = parameters.get("company_ticker")
     if city is None:
         return None
 
-    return "select * from yahoo.finance.quotes where symbol in ("YHOO")"
-
+    return "select * from yahoo.finance.quotes where symbol in ('"+ ticker+"')"
 
 def makeWebhookResult(data):
     query = data.get('query')
