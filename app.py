@@ -73,7 +73,7 @@ def makeWebhookResult(data):
             # ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
     speech = "Last Trade Price of " + quote.get('symbol') + " is: $" + quote.get('LastTradePriceOnly') + \
              ", Open price is $" + quote.get('Open') + ", change is $" + quote.get('Change') + \
-             ", change % is " + quote.get('Change_PercentChange') + "%"
+             ", change % is " + quote.get('ChangeinPercent')
     
     print("Response:")
     print(speech)
