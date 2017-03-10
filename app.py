@@ -69,12 +69,11 @@ def makeWebhookResult(data):
     if quote is None:
         return {}
 
-
     #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
             # ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
     speech = "Last Trade Price of" + quote.get('symbol') + " is: $" + quote.get('LastTradePriceOnly')
-    speech.append (", Open price is $" + quote.get('open') + ", change is $" + quote.get('Change'))
-    speech.append (", change % is " + quote.get('Change_PercentChange') + "%")
+    #speech.append (", Open price is $" + quote.get('open') + ", change is $" + quote.get('Change'))
+   #speech.append (", change % is " + quote.get('Change_PercentChange') + "%")
     
     print("Response:")
     print(speech)
@@ -84,7 +83,7 @@ def makeWebhookResult(data):
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
-        "source": "apiai-weather-webhook-sample"
+        "source": "niroop's webhook"
     }
 
 if __name__ == '__main__':
