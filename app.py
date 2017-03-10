@@ -48,7 +48,42 @@ def processRequest(req):
     res = makeWebhookResult(data)
     return res
 
-speech = "niroop is great!"
+def makeYqlQuery(req):
+    result = req.get("result")
+    parameters = result.get("parameters")
+    ticker = parameters.get("company_ticker")
+    if ticker is None:
+        return None
+
+    return "select * from yahoo.finance.quotes where symbol in ('" + ticker + "')"
+
+def makeWebhookResult(data):
+    query = data.get('query')
+    if query is None:
+        return {}
+
+    result = query.get('results')
+    if result is None:
+        return {}
+
+    quote = result.get('quote')
+    if quote is None:
+        return {}
+
+    
+    #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
+            # ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
+    speech = "niroop is still great"
+    print("Response:")
+    print(speech)
+
+    return {
+        "speech": speech,
+        "displayText": speech,
+        # "data": data,
+        # "contextOut": [],
+        "source": "apiai-weather-webhook-sample"
+    }
 
 
 if __name__ == '__main__':
