@@ -28,6 +28,7 @@ def webhook():
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
+    speech = "Test"
     return r
     
 def processRequest(req):
