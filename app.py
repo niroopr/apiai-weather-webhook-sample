@@ -19,6 +19,20 @@ from flask import make_response
 app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
+
+speech = "Test"
+
+print("Response:")
+print(speech)
+
+return {
+    "speech": speech,
+    "displayText": speech,
+    # "data": data,
+    # "contextOut": [],
+    "source": "niroop's webhook"
+}
+
 def webhook():
     req = request.get_json(silent=True, force=True)
     print("Request:")
