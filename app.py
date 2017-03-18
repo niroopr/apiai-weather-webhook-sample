@@ -25,9 +25,9 @@ def webhook():
 ##    print(json.dumps(req, indent=4))
 ##    res = processRequest(req)
 ##    res = json.dumps(res, indent=4)
+    res = "Niroop is a good guy"
 ##    # print(res)
-##    r = make_response(res)
-    r = "Niroop is a good guy"
+    r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r 
 def processRequest(req):
