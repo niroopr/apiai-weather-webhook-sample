@@ -19,20 +19,6 @@ from flask import make_response
 app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
-
-speech = "Test"
-
-print("Response:")
-print(speech)
-
-return {
-    "speech": speech,
-    "displayText": speech,
-    # "data": data,
-    # "contextOut": [],
-    "source": "niroop's webhook"
-}
-
 def webhook():
     req = request.get_json(silent=True, force=True)
     print("Request:")
@@ -42,9 +28,7 @@ def webhook():
     # print(res)
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
-    speech = "Test"
-    return r
-    
+    return r 
 def processRequest(req):
     if req.get("result").get("action") != "finance.stocks":
         return {}
@@ -57,10 +41,9 @@ def processRequest(req):
     return res
 
 def makeWebhookResult(data):
-    speech = "Test"
     
-    #data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
-    #271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
+    speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
+    271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
     
     print("Response:")
     print(speech)
