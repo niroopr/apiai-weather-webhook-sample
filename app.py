@@ -27,9 +27,9 @@ def webhook():
 ##    res = json.dumps(res, indent=4)
 ##    # print(res)
 ##    r = make_response(res)
-    r = "Niroop is a good guy"
-    r.headers['Content-Type'] = 'application/json'
-    return r 
+r = "Niroop is a good guy"
+r.headers['Content-Type'] = 'application/json'
+return r 
 def processRequest(req):
     if req.get("result").get("action") != "finance.stocks":
         return {}
