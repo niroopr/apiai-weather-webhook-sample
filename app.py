@@ -42,8 +42,10 @@ def processRequest(req):
 
 def makeWebhookResult(data):
     
-    speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
-    271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
+    #speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
+    #271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
+    
+    speech = "Niroop is a good guy"
     
     print("Response:")
     print(speech)
