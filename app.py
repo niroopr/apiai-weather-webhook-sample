@@ -20,12 +20,12 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-#    req = request.get_json(silent=True, force=True)
-#    print("Request:")
-#    print(json.dumps(req, indent=4))
+    req = request.get_json(silent=True, force=True)
+    print("Request:")
+    print(json.dumps(req, indent=4))
 ##    res = processRequest(req)
-#    if req.get("result").get("action") != "finance.stocks":
-#        return {}
+    if req.get("result").get("action") != "finance.stocks":
+        return {}
     url = 'http://nhclteas1.hclt.corp.hcl.in:8000/sap/bc/srt/wsdl/flv_10002A111AD1/srvc_url/sap/bc/srt/rfc/sap/zws_cb_chk_prod_stock_status/800/zws_cb_chk_prod_stock_status/zws_cb_bnd_stk_stat?sap-client=800'
     client = Client( url,username = 'COMM_USER', password = 'welcome')
     client.set_options(retxml=True)
