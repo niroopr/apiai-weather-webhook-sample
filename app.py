@@ -20,44 +20,33 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-##    req = request.get_json(silent=True, force=True)
-##    print("Request:")
-##    print(json.dumps(req, indent=4))
+#    req = request.get_json(silent=True, force=True)
+#    print("Request:")
+#    print(json.dumps(req, indent=4))
 ##    res = processRequest(req)
-##    res = json.dumps(res, indent=4)
-    res = "Niroop is a good guy"
-##    # print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r 
-def processRequest(req):
-    if req.get("result").get("action") != "finance.stocks":
-        return {}
+#    if req.get("result").get("action") != "finance.stocks":
+#        return {}
     url = 'http://nhclteas1.hclt.corp.hcl.in:8000/sap/bc/srt/wsdl/flv_10002A111AD1/srvc_url/sap/bc/srt/rfc/sap/zws_cb_chk_prod_stock_status/800/zws_cb_chk_prod_stock_status/zws_cb_bnd_stk_stat?sap-client=800'
     client = Client( url,username = 'COMM_USER', password = 'welcome')
     client.set_options(retxml=True)
     client.set_options(prettyxml=True)
     data = client.service.ZWS_CB_CHK_PROD_STOCK_STATUS(PLANT = "1000", PRODUCT="1300-520")
-    res = makeWebhookResult(data)
-    return res
-
-def makeWebhookResult(data):
-    
-    #speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
-    #271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
-    
-    speech = "Niroop is a good guy"
-    
+##    res = makeWebhookResult(data)
+    speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
+    271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
     print("Response:")
     print(speech)
-
-    return {
+    res = {
         "speech": speech,
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "niroop's webhook"
-    }
+    }	
+    res = json.dumps(res, indent=4)
+    r = make_response(res)
+    r.headers['Content-Type'] = 'application/json'
+    return r 
 
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
@@ -65,4 +54,3 @@ if __name__ == '__main__':
     print("Starting app on port %d" % port)
 
     app.run(debug=False, port=port, host='0.0.0.0')
-
