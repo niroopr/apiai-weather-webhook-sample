@@ -26,16 +26,16 @@ def webhook():
 ##    res = processRequest(req)
     if req.get("result").get("action") != "finance.stocks":
         return {}
-#    url = 'http://nhclteas1.hclt.corp.hcl.in:8000/sap/bc/srt/wsdl/flv_10002A111AD1/srvc_url/sap/bc/srt/rfc/sap/zws_cb_chk_prod_stock_status/800/zws_cb_chk_prod_stock_status/zws_cb_bnd_stk_stat?sap-client=800'
-#    client = Client( url,username = 'COMM_USER', password = 'welcome')
-#    client.set_options(retxml=True)
-#    client.set_options(prettyxml=True)
-#    data = client.service.ZWS_CB_CHK_PROD_STOCK_STATUS(PLANT = "1000", PRODUCT="1300-520")
+    url = 'http://nhclteas1.hclt.corp.hcl.in:8000/sap/bc/srt/wsdl/flv_10002A111AD1/srvc_url/sap/bc/srt/rfc/sap/zws_cb_chk_prod_stock_status/800/zws_cb_chk_prod_stock_status/zws_cb_bnd_stk_stat?sap-client=800'
+    client = Client( url,username = 'COMM_USER', password = 'welcome')
+    client.set_options(retxml=True)
+    client.set_options(prettyxml=True)
+    data = client.service.ZWS_CB_CHK_PROD_STOCK_STATUS(PLANT = "1000", PRODUCT="1300-520")
 ##    res = makeWebhookResult(data)
-#    speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
-#    271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
+    speech = data[225:232]+": "+data[233:241]+", "+data[252:257]+": "+data[258:262]+", "+data[
+    271:275]+": "+data[281:285]+", "+data[337:359]+": "+data[382:399]
     
-    speech = "Niroop is good"
+#    speech = "Niroop is good"
     print("Response:")
     print(speech)
     res = {
