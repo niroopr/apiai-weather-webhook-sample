@@ -26,7 +26,7 @@ def webhook():
 ##    res = processRequest(req)
     if req.get("result").get("action") != "finance.stocks":
         return {}
-    url = 'http://nhclteas1.hclt.corp.hcl.in:8000/sap/bc/srt/wsdl/flv_10002A111AD1/srvc_url/sap/bc/srt/rfc/sap/zws_cb_chk_prod_stock_status/800/zws_cb_chk_prod_stock_status/zws_cb_bnd_stk_stat?sap-client=800'
+    url = 'http://[fd8f:11f6:b487:7777::a62:fb7]:8000/sap/bc/srt/wsdl/flv_10002A111AD1/srvc_url/sap/bc/srt/rfc/sap/zws_cb_chk_prod_stock_status/800/zws_cb_chk_prod_stock_status/zws_cb_bnd_stk_stat?sap-client=800'
     client = Client( url,username = 'COMM_USER', password = 'welcome')
     client.set_options(retxml=True)
     client.set_options(prettyxml=True)
