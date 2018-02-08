@@ -39,50 +39,8 @@ def webhook():
     return r
     
 def processRequest(req):
-    if req.get("result").get("action") != "finance.stocks":
-        return {"speech": "Error"}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
-    yql_query = makeYqlQuery(req)
-    if yql_query is None:
-        return {"speech": "Error"}
-    yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
-    result = urlopen(yql_url).read()
-    data = json.loads(result)
-    res = makeWebhookResult(data)
-    res = {"speech": "Error"}
-    return res
-
-def makeYqlQuery(req):
-    result = req.get("result")
-    parameters = result.get("parameters")
-    ticker = parameters.get("company_ticker")
-    if ticker is None:
-        return {"speech": "Error"}
-
-    return "select * from yahoo.finance.quotes where symbol in ('" + ticker + "')"
-
-def makeWebhookResult(data):
-    query = data.get('query')
-    if query is None:
-        return {"speech": "Error"}
-
-    result = query.get('results')
-    if result is None:
-        return {"speech": "Error"}
-
-    quote = result.get('quote')
-    if quote is None:
-        return {"speech": "Error"}
-
-    #speech = "Today in " + location.get('city') + ": " + condition.get('text') + \
-            # ", the temperature is " + condition.get('temp') + " " + units.get('temperature')
-    speech = "Last Trade Price of " + quote.get('symbol') + " is: $" + quote.get('LastTradePriceOnly') + \
-             ", Open price is $" + quote.get('Open') + ", change is $" + quote.get('Change') + \
-             ", change % is " + quote.get('ChangeinPercent')
-    
-    print("Response:")
-    print(speech)
-
+  
+    speech = "Niroop is a good guy"
     return {
         "speech": speech,
         "displayText": speech,
