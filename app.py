@@ -40,15 +40,15 @@ def webhook():
     
 def processRequest(req):
     if req.get("result").get("action") != "finance.stocks":
-        return {}
+        return {"speech": "Error"}
     baseurl = "https://query.yahooapis.com/v1/public/yql?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
-        return {}
+        return {"speech": "Error"}
     yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
     result = urlopen(yql_url).read()
     data = json.loads(result)
-   # res = makeWebhookResult(data)
+    res = makeWebhookResult(data)
     res = {"speech": "Error"}
     return res
 
@@ -57,7 +57,7 @@ def makeYqlQuery(req):
     parameters = result.get("parameters")
     ticker = parameters.get("company_ticker")
     if ticker is None:
-        return None
+        return {"speech": "Error"}
 
     return "select * from yahoo.finance.quotes where symbol in ('" + ticker + "')"
 
