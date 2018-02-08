@@ -48,7 +48,8 @@ def processRequest(req):
     yql_url = baseurl + urlencode({'q': yql_query}) + "&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback="
     result = urlopen(yql_url).read()
     data = json.loads(result)
-    res = makeWebhookResult(data)
+   # res = makeWebhookResult(data)
+    res = {"speech": "Error"}
     return res
 
 def makeYqlQuery(req):
