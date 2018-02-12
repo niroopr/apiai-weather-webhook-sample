@@ -34,21 +34,16 @@ def webhook():
 
     res = json.dumps(res, indent=4)
     # print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
-    
-def processRequest(req):
-  
-    speech = "Niroop is a good guy"
-    return {
+    r = {
         "speech": speech,
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "niroop's webhook"
     }
-
+    r.headers['Content-Type'] = 'application/json'
+    return r
+    
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
