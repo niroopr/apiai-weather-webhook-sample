@@ -30,15 +30,15 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-     r = {
+    return {
         "speech": speech,
         "displayText": speech,
         # "data": data,
         # "contextOut": [],
         "source": "niroop's webhook"
     }
-    r.headers['Content-Type'] = 'application/json'
-    return r
+ #   r.headers['Content-Type'] = 'application/json'
+ #   return r
     
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
