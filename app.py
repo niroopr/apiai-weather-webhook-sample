@@ -12,8 +12,7 @@ import json
 import os
 
 import logging
-
-logging.basicConfig(level=logging.DEBUG)
+logging.getLogger().setLevel(logging.INFO)
 
 from flask import Flask
 from flask import request
